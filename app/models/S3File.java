@@ -21,19 +21,35 @@ public class S3File extends Model {
     @Id
     public UUID id;
 
-    private String bucket;
+    public String bucket;
 
     public String name;
+    
+    public String rawname;
 
     @Transient
     public File file;
 
     public URL getUrl() throws MalformedURLException {
-        return new URL("https://s3.amazonaws.com/" + bucket + "/" + getActualFileName());
+        return new URL("https://s3.amazonaws.com/" + bucket + "/" + getMp4FileName());
     }
 
-    private String getActualFileName() {
+    public String getActualFileName() {
         return id + "/" + name;
+    }
+    
+    public String getFileUrl(){
+    	String stringReturn = "https://s3.amazonaws.com/" + bucket + "/" + getActualFileName();
+    	return stringReturn;
+    }
+    
+    public String getOutputUrl(){
+    	String stringReturn = "https://s3.amazonaws.com/" + bucket + "/" + getMp4FileName();
+    	return stringReturn;
+    }
+    
+    private String getMp4FileName(){
+    	return id + "/" + FileWithMp4Extension(name);
     }
 
     @Override
@@ -65,5 +81,11 @@ public class S3File extends Model {
             super.delete();
         }
     }
-
+    
+    //Métodos auxiliares
+    
+    private String FileWithMp4Extension(String name){
+    	String[] tokens = name.split("\\.(?=[^\\.]+$)");
+    	return tokens[0]+".mp4";	
+    }
 }
