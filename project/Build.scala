@@ -8,9 +8,9 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
+		"com.brightcove.zencoder.api" % "zencoder-java" % "2.0.15",
       "com.amazonaws" % "aws-java-sdk" % "1.3.11",
-      "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
-      "com.brightcove.zencoder.api" % "zencoder-java" % "2.0.17"
+      "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
     )
 
     val main = play.Project(appName, appVersion, appDependencies).settings(
