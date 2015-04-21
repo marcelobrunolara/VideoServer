@@ -67,7 +67,7 @@ public class Application extends Controller {
     	ArrayList<ZencoderOutput> outputs = new ArrayList<ZencoderOutput>();
 
     	ZencoderOutput output1 = new ZencoderOutput();
-    	output1.setFormat(ContainerFormat.FLV);
+    	output1.setFormat(ContainerFormat.MP4);
     	output1.setPublic(true);
     	output1.setCredentials("s3videoserver");
     	output1.setUrl(s3File.getOutputUrl());
